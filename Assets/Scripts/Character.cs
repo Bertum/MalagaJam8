@@ -2,39 +2,39 @@
 
 public class Character : MonoBehaviour
 {
+    private static readonly string TAG_ITEM_INVERT_GLOBAL_GRAVITY = "ItemInvertGlobalGravity";
+
     public bool teleported;
     private float health;
     public bool isRight;
     private JoystickController joystickController;
-    public ConstantForce constForce;
+    public ConstantForce2D constForce;
 
     private void Awake()
     {
         teleported = false;
-        constForce = GetComponent<ConstantForce>();
+        constForce = GetComponent<ConstantForce2D>();
         this.joystickController = GetComponent<JoystickController>();
     }
 
     // Use this for initialization
-    void Start () {
-    
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
 
-	}
+    }
 
     private void FixedUpdate()
     {
-        //if (this.joystickController.IsPressButtonY())
-        //{
-        //    changeMyGravity();
-        //}
-
         if (this.joystickController.IsPressButtonX())
         {
-            invertGravity();
+            this.joystickController.SetInvertGravity(!this.joystickController.GetInvertGravity());
+            changeMyGravity();
         }
     }
 
@@ -60,23 +60,20 @@ public class Character : MonoBehaviour
     {
         if (constForce.force.y != 0)
         {
-            constForce.force = new Vector3(0, 0, 0);
+            constForce.force = new Vector2(0, 0);
         }
-        else {
-            if (Physics.gravity.y > 0) { 
-                constForce.force = new Vector3(0, -18.0f, 0);
-            }
-            else if (Physics.gravity.y < 0)
+        else
+        {
+            if (Physics2D.gravity.y > 0)
             {
-                constForce.force = new Vector3(0, 18.0f, 0);
+                constForce.force = new Vector2(0, -18.0f);
+            }
+            else if (Physics2D.gravity.y < 0)
+            {
+                constForce.force = new Vector2(0, 18.0f);
             }
         }
-        
-    }
 
-    public void invertGravity () {
-        Physics.gravity = new Vector3(0, Physics.gravity.y * -1);
-        if (constForce.force.y != 0) { constForce.force = new Vector3(0, constForce.force.y * -1, 0); }
     }
 
     public void DropWeapon(bool value)
@@ -87,6 +84,19 @@ public class Character : MonoBehaviour
     public void Shoot(bool value)
     {
         throw new System.NotImplementedException();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals(TAG_ITEM_INVERT_GLOBAL_GRAVITY))
+        {
+            GameController.Instance.InvertGlobalGravity();
+        }
+    }
+
+    public JoystickController GetJoystickController()
+    {
+        return this.joystickController;
     }
 
 }
