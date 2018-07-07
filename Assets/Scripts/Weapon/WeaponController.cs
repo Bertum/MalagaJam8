@@ -8,6 +8,8 @@ public class WeaponController : MonoBehaviour
     public bool dispersion;
     public int ammo;
     public bool melee;
+    public bool isInversionWeapon;
+    public bool isBazooka;
     [HideInInspector]
     public bool attacking;
     private Character ownerCharacter;
@@ -90,7 +92,16 @@ public class WeaponController : MonoBehaviour
         var bullet = bullets[ammo - 1];
         var bulletController = bullet.GetComponent<BulletController>();
         bulletController.damage = damage;
-        bulletController.ActivateAndMove(this.transform.position, number, ownerCharacter.isRight);
+        WeaponType weaponType = WeaponType.Bullet;
+        if (isInversionWeapon)
+        {
+            weaponType = WeaponType.Inversion;
+        }
+        else if (isBazooka)
+        {
+            weaponType = WeaponType.Bazooka;
+        }
+        bulletController.ActivateAndMove(this.transform.position, number, ownerCharacter.isRight, weaponType);
         ammo--;
     }
 
@@ -104,7 +115,14 @@ public class WeaponController : MonoBehaviour
     private void PlayAnimation()
     {
         var animator = GetComponentInChildren<Animator>();
-        animator.Play("WeaponAnimation");
+        if (melee)
+        {
+            animator.Play("WeaponAnimation");
+        }
+        else
+        {
+            animator.Play("SmokeAnimation");
+        }
     }
 
     public void SetOwner(Character character)
