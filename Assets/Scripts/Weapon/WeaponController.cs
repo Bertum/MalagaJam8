@@ -15,7 +15,7 @@ public class WeaponController : MonoBehaviour
     private float timer;
     private List<GameObject> bullets;
     private AudioClip noBulletsAudio;
-    private AudioClip shootAudio;
+    public AudioClip shootAudio;
     private AudioSource audioSource;
 
     private void Awake()
@@ -23,7 +23,6 @@ public class WeaponController : MonoBehaviour
         bullets = new List<GameObject>();
         var bullet = Resources.Load<GameObject>("Prefabs/Bullet/Bullet");
         noBulletsAudio = Resources.Load<AudioClip>("Audio/NoBulletAudio");
-        shootAudio = Resources.Load<AudioClip>("Audio/ShootAudio");
 
         audioSource = GetComponent<AudioSource>();
 

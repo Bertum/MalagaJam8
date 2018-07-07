@@ -404,6 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleported: 0
   isRight: 0
+  constForce: {fileID: 0}
 --- !u!61 &450157156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -634,6 +635,7 @@ MonoBehaviour:
   ammo: 3
   melee: 0
   attacking: 0
+  shootAudio: {fileID: 0}
 --- !u!65 &1422641705
 BoxCollider:
   m_ObjectHideFlags: 0

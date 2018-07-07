@@ -84,6 +84,7 @@ MonoBehaviour:
   ammo: 0
   melee: 1
   attacking: 0
+  shootAudio: {fileID: 8300000, guid: cb3345c29f5d5e44b98de921a6d192f9, type: 3}
 --- !u!212 &212282079825104008
 SpriteRenderer:
   m_ObjectHideFlags: 1
