@@ -2,14 +2,13 @@
 
 public class ButtonController : MonoBehaviour
 {
-    private Sprite redButton, redButtonPushed;
+    private Sprite redButtonPushed;
     private bool pushed;
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        redButton = Resources.Load<Sprite>("Sprites/Buttons/RedButton");
         redButtonPushed = Resources.Load<Sprite>("Sprites/Buttons/RedButtonPushed");
         pushed = false;
     }
