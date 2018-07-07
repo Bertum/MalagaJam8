@@ -16,8 +16,8 @@ public class BulletController : MonoBehaviour
     {
         move = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        inversionSprite = Resources.Load<Sprite>("Sprites/Bullets/InversionBullet");
-        bazookaSprite = Resources.Load<Sprite>("Sprites/Bullets/BazookaBullet");
+        inversionSprite = Resources.Load<Sprite>("Sprites/Bullets/inversionBullet");
+        bazookaSprite = Resources.Load<Sprite>("Sprites/Bullets/misile"); ;
     }
 
     public void ActivateAndMove(Vector3 weaponPosition, int number, bool right, WeaponType weaponType)
@@ -54,15 +54,15 @@ public class BulletController : MonoBehaviour
             switch (number)
             {
                 case 0:
-                    this.transform.Translate(Vector3.right * Time.deltaTime * speed);
+                    this.transform.Translate(direction * Time.deltaTime * speed);
                     break;
                 case 1:
                     this.transform.Translate(Vector3.up * dispersionInt * Time.deltaTime * speed);
-                    this.transform.Translate(Vector3.right * Time.deltaTime * speed);
+                    this.transform.Translate(direction * Time.deltaTime * speed);
                     break;
                 case 2:
                     this.transform.Translate(Vector3.down * dispersionInt * Time.deltaTime * speed);
-                    this.transform.Translate(Vector3.right * Time.deltaTime * speed);
+                    this.transform.Translate(direction * Time.deltaTime * speed);
                     break;
             }
 

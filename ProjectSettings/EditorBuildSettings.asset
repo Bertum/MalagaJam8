@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Infernage.unity
+    guid: 66362a9c4fc96c743843916b49ef56dd
+  - enabled: 1
+    path: Assets/Scenes/InfernageSub2.unity
+    guid: f5ba73f0e417091408294a1dc7c997fd
+  - enabled: 1
+    path: Assets/Scenes/InfernageSub1.unity
+    guid: 6f24c57e0fece2746981d055d1a64489
+  - enabled: 1
+    path: Assets/Scenes/InfernageSub3.unity
+    guid: 81eed7ad54f69a542bd804d23b7d1735
   m_configObjects: {}
