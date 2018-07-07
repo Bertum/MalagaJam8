@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IJoystickController
 {
     public bool teleported;
     private float health;
@@ -77,5 +77,19 @@ public class Character : MonoBehaviour
         if (constForce.force.y != 0) { constForce.force = new Vector3(0, constForce.force.y * -1, 0); }
     }
 
+    public void ChangeGlobalGravity(bool value)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void DropWeapon(bool value)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Shoot(bool value)
+    {
+        throw new System.NotImplementedException();
+    }
 
 }
