@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 384339063}
   m_Layer: 0
   m_Name: New Sprite
-  m_TagString: ItemGravity
+  m_TagString: ItemInvertGlobalGravity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -395,7 +395,6 @@ MonoBehaviour:
   maxHorizontalSpeed: 10
   jumpForce: 300
   invertHorizontalMovement: 0
-  invertGravity: 0
   numberPlayer: 1
 --- !u!247 &394056365
 ConstantForce2D:
@@ -589,7 +588,6 @@ MonoBehaviour:
   maxHorizontalSpeed: 10
   jumpForce: 300
   invertHorizontalMovement: 0
-  invertGravity: 0
   numberPlayer: 2
 --- !u!50 &752191891
 Rigidbody2D:
@@ -1161,4 +1159,44 @@ Transform:
   - {fileID: 384339062}
   m_Father: {fileID: 0}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2124296954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2124296956}
+  - component: {fileID: 2124296955}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2124296955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2124296954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406138ae6a646ca49871b6e3e74a65ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2124296956
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2124296954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.776992, y: -1.2132766, z: -0.0937012}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
