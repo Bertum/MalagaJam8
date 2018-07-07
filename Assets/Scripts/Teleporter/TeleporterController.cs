@@ -12,7 +12,7 @@ public class TeleporterController : MonoBehaviour
     {
         audioSource = this.GetComponent<AudioSource>();
         //GET audioclip to reproduce the sound of teleporter
-        teleporterAudio = Resources.Load<AudioClip>("Audio/TeleporterAudio");
+        teleporterAudio = Resources.Load<AudioClip>("Audio/Teleport");
         audioSource.clip = teleporterAudio;
         connectedTeleporterPosition = connectedTeleporter.transform.position;
         connectedTeleporterPosition.y += 0.5f;

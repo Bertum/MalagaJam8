@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedTeleporter: {fileID: 1877073831}
-  audioSource: {fileID: 0}
 --- !u!61 &257566034
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,7 +219,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 257566032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.49, y: -4.44, z: 0}
+  m_LocalPosition: {x: -9.49, y: -4.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -403,7 +402,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e42f61966c60894c82e0704f087d3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastTeleporterId: 0
+  teleported: 0
+  isRight: 0
+  constForce: {fileID: 0}
 --- !u!61 &450157156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -478,7 +479,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 450157154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.78, z: 0}
+  m_LocalPosition: {x: 2.03, y: -2.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -504,6 +505,48 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &459219445
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4559502340274386, guid: 421d44b24bcdde4448712f62635ba356, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559502340274386, guid: 421d44b24bcdde4448712f62635ba356, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559502340274386, guid: 421d44b24bcdde4448712f62635ba356, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559502340274386, guid: 421d44b24bcdde4448712f62635ba356, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559502340274386, guid: 421d44b24bcdde4448712f62635ba356, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559502340274386, guid: 421d44b24bcdde4448712f62635ba356, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559502340274386, guid: 421d44b24bcdde4448712f62635ba356, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559502340274386, guid: 421d44b24bcdde4448712f62635ba356, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 421d44b24bcdde4448712f62635ba356, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1039383098
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,8 +674,12 @@ MonoBehaviour:
   damage: 3
   cadence: 0.5
   dispersion: 0
-  ammo: 0
+  ammo: 3
   melee: 0
+  isInversionWeapon: 0
+  isBazooka: 0
+  attacking: 0
+  shootAudio: {fileID: 0}
 --- !u!65 &1422641705
 BoxCollider:
   m_ObjectHideFlags: 0
