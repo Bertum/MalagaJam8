@@ -15,30 +15,27 @@ public class JoystickController : MonoBehaviour
     public float maxHorizontalSpeed = 10f;
     public float jumpForce = 500f;
     public bool invertHorizontalMovement = false;
+    public bool invertGlobalGravity = false;
 
     private Rigidbody2D rigidbody;
-    private Character character;
 
     private void Awake()
     {
-        this.character = GetComponent<Character>();
         this.rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
-        Move(GetAxis(JOYSTICK_LEFT_ONE));
+        Move(GetValueJoystickLeft());
         Jump(GetButtonDown(JOYSTICK_A));
-        this.character.Shoot(GetButtonDown(JOYSTICK_B));
-        this.character.DropWeapon(GetButtonDown(JOYSTICK_X));
-        this.character.ChangeGlobalGravity(GetButtonDown(JOYSTICK_Y));
     }
 
     private void Jump(bool value)
     {
         if (value)
         {
-            this.rigidbody.AddForce(new Vector3(0f, this.jumpForce));
+            float y = this.jumpForce * (this.invertGlobalGravity ? (-1) : 1);
+            this.rigidbody.AddForce(new Vector3(0f, y));
         }
     }
 
@@ -67,4 +64,48 @@ public class JoystickController : MonoBehaviour
         this.invertHorizontalMovement = value;
     }
 
+    public void SetJumpForce(float value)
+    {
+        this.jumpForce = value;
+    }
+
+    public bool IsJoystickLeftHorizontalLeft()
+    {
+        return GetAxis(JOYSTICK_LEFT_ONE) < 0f;
+    }
+
+    public bool IsJoystickLeftHorizontalRight()
+    {
+        return GetAxis(JOYSTICK_LEFT_ONE) > 0f;
+    }
+
+    public float GetValueJoystickLeft()
+    {
+        return GetAxis(JOYSTICK_LEFT_ONE);
+    }
+
+    public bool IsPressButtonA()
+    {
+        return GetButtonDown(JOYSTICK_A);
+    }
+
+    public bool IsPressButtonB()
+    {
+        return GetButtonDown(JOYSTICK_B);
+    }
+
+    public bool IsPressButtonX()
+    {
+        return GetButtonDown(JOYSTICK_X);
+    }
+
+    public bool IsPressButtonY()
+    {
+        return GetButtonDown(JOYSTICK_Y);
+    }
+
+    public void SetInvertGravity(bool value)
+    {
+        this.invertGlobalGravity = value;
+    }
 }

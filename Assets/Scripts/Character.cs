@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 
-public class Character : MonoBehaviour, IJoystickController
+public class Character : MonoBehaviour
 {
     public bool teleported;
     private float health;
     public bool isRight;
+    private JoystickController joystickController;
+    public ConstantForce constForce;
 
     private void Awake()
     {
         teleported = false;
         constForce = GetComponent<ConstantForce>();
+        this.joystickController = GetComponent<JoystickController>();
     }
-
-    public ConstantForce constForce;
 
     // Use this for initialization
     void Start () {
@@ -26,11 +27,12 @@ public class Character : MonoBehaviour, IJoystickController
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            changeMyGravity();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
+        //if (this.joystickController.IsPressButtonY())
+        //{
+        //    changeMyGravity();
+        //}
+
+        if (this.joystickController.IsPressButtonX())
         {
             invertGravity();
         }
@@ -75,11 +77,6 @@ public class Character : MonoBehaviour, IJoystickController
     public void invertGravity () {
         Physics.gravity = new Vector3(0, Physics.gravity.y * -1);
         if (constForce.force.y != 0) { constForce.force = new Vector3(0, constForce.force.y * -1, 0); }
-    }
-
-    public void ChangeGlobalGravity(bool value)
-    {
-        throw new System.NotImplementedException();
     }
 
     public void DropWeapon(bool value)
