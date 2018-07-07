@@ -54,15 +54,15 @@ public class BulletController : MonoBehaviour
             switch (number)
             {
                 case 0:
-                    this.transform.Translate(Vector3.right * Time.deltaTime * speed);
+                    this.transform.Translate(direction * Time.deltaTime * speed);
                     break;
                 case 1:
                     this.transform.Translate(Vector3.up * dispersionInt * Time.deltaTime * speed);
-                    this.transform.Translate(Vector3.right * Time.deltaTime * speed);
+                    this.transform.Translate(direction * Time.deltaTime * speed);
                     break;
                 case 2:
                     this.transform.Translate(Vector3.down * dispersionInt * Time.deltaTime * speed);
-                    this.transform.Translate(Vector3.right * Time.deltaTime * speed);
+                    this.transform.Translate(direction * Time.deltaTime * speed);
                     break;
             }
 
