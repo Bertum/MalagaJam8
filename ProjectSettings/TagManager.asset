@@ -4,13 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Player1
-  - Player2
-  - Player3
-  - Player4
   - MeleeWeapon
   - Bullet
   - Weapon
+  - ItemInvertGlobalGravity
   layers:
   - Default
   - TransparentFX

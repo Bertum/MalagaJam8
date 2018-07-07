@@ -13,10 +13,11 @@ public class JoystickController : MonoBehaviour
     private static readonly string JOYSTICK_RIGHT_TWO_PLATER_ONE = "JR2";//Joystick derecho - vertical
 
     public float maxHorizontalSpeed = 10f;
-    public float jumpForce = 500f;
+    public float jumpForce = 300f;
     public bool invertHorizontalMovement = false;
-    public bool invertGlobalGravity = false;
+    public int numberPlayer = 1;
 
+    private bool invertGravity = false;
     private Rigidbody2D rigidbody;
 
     private void Awake()
@@ -34,8 +35,8 @@ public class JoystickController : MonoBehaviour
     {
         if (value)
         {
-            float y = this.jumpForce * (this.invertGlobalGravity ? (-1) : 1);
-            this.rigidbody.AddForce(new Vector3(0f, y));
+            float y = this.jumpForce * (this.invertGravity ? -1 : 1);
+            this.rigidbody.AddForce(new Vector2(0f, y));
         }
     }
 
@@ -51,12 +52,17 @@ public class JoystickController : MonoBehaviour
 
     private float GetAxis(string axisName)
     {
-        return Input.GetAxis(axisName + this.tag);
+        return Input.GetAxis(axisName + GetNumberPlayer());
     }
 
     private bool GetButtonDown(string buttonName)
     {
-        return Input.GetButtonDown(buttonName + this.tag);
+        return Input.GetButtonDown(buttonName + GetNumberPlayer());
+    }
+
+    private string GetNumberPlayer()
+    {
+        return this.tag + this.numberPlayer.ToString();
     }
 
     public void SetInvertHorizontalMovement(bool value)
@@ -106,6 +112,11 @@ public class JoystickController : MonoBehaviour
 
     public void SetInvertGravity(bool value)
     {
-        this.invertGlobalGravity = value;
+        this.invertGravity = value;
     }
+    public bool GetInvertGravity()
+    {
+        return this.invertGravity;
+    }
+
 }
