@@ -11,6 +11,7 @@ public class BulletController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Sprite inversionSprite;
     private Sprite bazookaSprite;
+    public Character character;
 
     private void Awake()
     {

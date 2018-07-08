@@ -64,6 +64,14 @@ public class WeaponController : MonoBehaviour
 
                 timer = 0;
             }
+            if (this.ownerCharacter.isRight)
+            {
+                this.transform.localScale = new Vector3(0.2f, this.transform.localScale.y, this.transform.localScale.z);
+            }
+            else
+            {
+                this.transform.localScale = new Vector3(-0.2f, this.transform.localScale.y, this.transform.localScale.z);
+            }
         }
     }
 
@@ -75,12 +83,12 @@ public class WeaponController : MonoBehaviour
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    ActivateBullet(i);
+                    ActivateBullet(i, this.ownerCharacter);
                 }
             }
             else
             {
-                ActivateBullet(0);
+                ActivateBullet(0, this.ownerCharacter);
             }
             audioSource.clip = shootAudio;
             audioSource.Play();
@@ -93,8 +101,9 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    private void ActivateBullet(int number)
+    private void ActivateBullet(int number, Character character)
     {
+        this.ownerCharacter = character;
         var bullet = bullets[ammo - 1];
         var bulletController = bullet.GetComponent<BulletController>();
         bulletController.damage = damage;

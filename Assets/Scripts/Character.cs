@@ -126,18 +126,22 @@ public class Character : MonoBehaviour
         }
 
         var weaponController = collision.gameObject.GetComponent<WeaponController>();
+        var bulletController = collision.gameObject.GetComponent<BulletController>();
 
-        if (weaponController != null)
+        if (collision.gameObject.tag == "Bullet" && bulletController.character != this)
         {
-            if (collision.gameObject.tag == "Bullet")
-            {
-                health -= collision.gameObject.GetComponent<BulletController>().damage;
-            }
-            else if (collision.gameObject.tag == "MeleeWeapon" && weaponController.attacking)
+            health -= bulletController.damage;
+        }
+        else if (weaponController != null)
+        {
+            if (collision.gameObject.tag == "MeleeWeapon" && weaponController.attacking)
             {
                 health -= weaponController.damage;
             }
+
         }
+
+        Debug.Log(health);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
