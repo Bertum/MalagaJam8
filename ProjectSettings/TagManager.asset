@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Weapon
   - ItemInvertGlobalGravity
+  - Wood
+  - Box
   layers:
   - Default
   - TransparentFX
