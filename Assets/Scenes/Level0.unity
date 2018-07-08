@@ -296,7 +296,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4511518751205522, guid: ef5ecccab48ad874bbdaebf75f8ec780, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 9.07
       objectReference: {fileID: 0}
     - target: {fileID: 4511518751205522, guid: ef5ecccab48ad874bbdaebf75f8ec780, type: 2}
       propertyPath: m_LocalPosition.y
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 310660130}
   - component: {fileID: 310660129}
   - component: {fileID: 310660128}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 708861864}
   - component: {fileID: 708861861}
   - component: {fileID: 708861862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +694,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4511518751205522, guid: ef5ecccab48ad874bbdaebf75f8ec780, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -8.86
       objectReference: {fileID: 0}
     - target: {fileID: 4511518751205522, guid: ef5ecccab48ad874bbdaebf75f8ec780, type: 2}
       propertyPath: m_LocalPosition.y

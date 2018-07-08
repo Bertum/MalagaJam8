@@ -128,7 +128,7 @@ public class Character : MonoBehaviour
         var weaponController = collision.gameObject.GetComponent<WeaponController>();
         var bulletController = collision.gameObject.GetComponent<BulletController>();
 
-        if (collision.gameObject.tag == "Bullet" && bulletController.character != this)
+        if (collision.gameObject.tag == "Bullet" && bulletController.character != this.gameObject.GetComponent<Character>())
         {
             health -= bulletController.damage;
         }
@@ -138,7 +138,6 @@ public class Character : MonoBehaviour
             {
                 health -= weaponController.damage;
             }
-
         }
     }
 
