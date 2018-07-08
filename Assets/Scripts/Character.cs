@@ -17,6 +17,9 @@ public class Character : MonoBehaviour
     private bool hasWeapon;
     private GameObject weaponTriggerObject;
     private bool canGetWeapon;
+    public float playerScale = 0.5f;
+    private float moveValue;
+    public float generalGravity = 15;
 
     private void Awake()
     {
@@ -50,6 +53,16 @@ public class Character : MonoBehaviour
 
     private void FixedUpdate()
     {
+        moveValue = joystickController.GetValueJoystickLeft();
+        if (moveValue >= 0)
+        {
+            transform.localScale = new Vector3(playerScale, transform.localScale.y);
+        }
+        else if (moveValue <= 0)
+        {
+            transform.localScale = new Vector3(playerScale * -1, transform.localScale.y);
+        }
+
         if (this.joystickController.IsPressButtonX())
         {
             this.joystickController.SetInvertGravity(!this.joystickController.GetInvertGravity());
@@ -89,16 +102,19 @@ public class Character : MonoBehaviour
         if (constantForceComponent.force.y != 0)
         {
             constantForceComponent.force = new Vector2(0, 0);
+            transform.localScale = new Vector3(playerScale, transform.localScale.y * -1);
         }
         else
         {
             if (Physics2D.gravity.y > 0)
             {
-                constantForceComponent.force = new Vector2(0, -18.0f);
+                constantForceComponent.force = new Vector2(0, generalGravity * -2);
+                transform.localScale = new Vector3(playerScale, transform.localScale.y * -1);
             }
             else if (Physics2D.gravity.y < 0)
             {
-                constantForceComponent.force = new Vector2(0, 18.0f);
+                constantForceComponent.force = new Vector2(0, generalGravity * 2);
+                transform.localScale = new Vector3(playerScale, transform.localScale.y * -1);
             }
         }
 
