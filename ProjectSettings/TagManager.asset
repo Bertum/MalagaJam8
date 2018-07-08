@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - ItemInvertGlobalGravity
   - Wood
+  - Box
   layers:
   - Default
   - TransparentFX
