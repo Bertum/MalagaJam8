@@ -75,7 +75,7 @@ public class Character : MonoBehaviour
 
     private void GetWeapon()
     {
-        if (this.hasWeapon)
+        if (this.hasWeapon || !checkWeaponTriggerObject())
         {
             return;
         }
@@ -106,15 +106,11 @@ public class Character : MonoBehaviour
 
     public void DropWeapon()
     {
-        if (this.hasWeapon)
+        if (this.hasWeapon && checkWeaponTriggerObject())
         {
             this.weaponTriggerObject.GetComponent<WeaponController>().SetOwner(null);
+            this.hasWeapon = false;
         }
-    }
-
-    public void Shoot()
-    {
-        throw new System.NotImplementedException();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -127,7 +123,7 @@ public class Character : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!this.hasWeapon && !weaponHasOwner(collision) && !weaponEqualTrigger(collision))
+        if (!this.hasWeapon && IsWeaponCollider(collision) && !weaponHasOwner(collision) && !WeaponEqualTrigger(collision))
         {
             this.weaponTriggerObject = collision.gameObject;
             this.canGetWeapon = true;
@@ -137,6 +133,11 @@ public class Character : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         this.canGetWeapon = false;
+
+        if (!this.hasWeapon)
+        {
+            this.weaponTriggerObject = null;
+        }
     }
 
     public JoystickController GetJoystickController()
@@ -151,12 +152,27 @@ public class Character : MonoBehaviour
 
     private bool weaponHasOwner(Collider2D collision)
     {
+        if (collision == null || collision.gameObject.GetComponent<WeaponController>() == null)
+        {
+            return false;
+        }
+
         return collision.gameObject.GetComponent<WeaponController>().hasOwner();
     }
 
-    private bool weaponEqualTrigger(Collider2D collision)
+    private bool IsWeaponCollider(Collider2D collision)
+    {
+        return collision.gameObject.tag.Equals("MeleeWeapon") || collision.gameObject.tag.Equals("Weapon");
+    }
+
+    private bool WeaponEqualTrigger(Collider2D collision)
     {
         return collision.gameObject.Equals(this.weaponTriggerObject);
+    }
+
+    private bool checkWeaponTriggerObject()
+    {
+        return this.weaponTriggerObject != null && this.weaponTriggerObject.GetComponent<WeaponController>() != null;
     }
 
 }
