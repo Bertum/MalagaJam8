@@ -142,7 +142,6 @@ public class WeaponController : MonoBehaviour
 
     public void SetOwner(Character character)
     {
-        Debug.Log(character.GetJoystickController().numberPlayer);
         ownerCharacter = character;
     }
 

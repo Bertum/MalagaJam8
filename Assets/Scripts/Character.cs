@@ -57,10 +57,12 @@ public class Character : MonoBehaviour
         if (moveValue > 0)
         {
             transform.localScale = new Vector3(playerScale, transform.localScale.y);
+            this.isRight = true;
         }
         else if (moveValue < 0)
         {
             transform.localScale = new Vector3(playerScale * -1, transform.localScale.y);
+            this.isRight = false;
         }
 
         if (this.joystickController.IsPressButtonX())
@@ -69,7 +71,6 @@ public class Character : MonoBehaviour
             changeMyGravity();
         }
 
-        this.isRight = !this.joystickController.IsJoystickLeftHorizontalLeft();
 
         //Comprobar si el personaje esta tocando el suelo.
         this.joystickController.CanJump = Physics2D.OverlapCircle(this.floorCheck.position, this.floorRadius, this.floorMask);

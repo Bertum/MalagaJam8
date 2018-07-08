@@ -15,20 +15,23 @@ public class GameSceneManager : MonoBehaviour
     private TransitionAnimationManager _animationManager;
     private TransitionSceneManager _sceneManager;
     private TransitionState _state;
-    
-	// Use this for initialization
-	public void Start ()
+
+    // Use this for initialization
+    public void Start()
     {
         _state = TransitionState.Initialize;
         _animationManager = new TransitionAnimationManager(TransitionTarget, TransitionTime, Characters);
 
         if (TransitionTime == 0)
             TransitionTime = 1;
-	}
-	
-	// Update is called once per frame
-	public void Update ()
+    }
+
+    // Update is called once per frame
+    public void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Space))
+            Invoke("NextLevel", 0.5f);
+
         switch (_state)
         {
             case TransitionState.Initialize:
@@ -175,7 +178,10 @@ public class TransitionAnimationManager
 
 public class TransitionSceneManager
 {
-    public Scene Current { get; private set; }
+    public Scene Current
+    {
+        get; private set;
+    }
     public Scene Next => _next ?? default(Scene);
 
     private Scene? _next;
@@ -204,7 +210,8 @@ public class TransitionSceneManager
         _preLoadOp.allowSceneActivation = false;
 
         // Scene loading takes 90% and the remaining 10% awakes the scene when activation is enabled
-        while (_preLoadOp.progress < 0.89f) yield return null;
+        while (_preLoadOp.progress < 0.89f)
+            yield return null;
 
         _next = SceneManager.GetSceneByBuildIndex(nextIdx);
     }
@@ -212,13 +219,15 @@ public class TransitionSceneManager
     public IEnumerator Activate(Action onFinished = null)
     {
         // If preload hasn't been executed, abort
-        if (_preLoadOp == null) yield break;
+        if (_preLoadOp == null)
+            yield break;
 
         // Enable scene activation
         _preLoadOp.allowSceneActivation = true;
 
         // Wait until it's finished
-        while (!_preLoadOp.isDone) yield return null;
+        while (!_preLoadOp.isDone)
+            yield return null;
 
         // Move origin
         SetupOrigin();
@@ -237,7 +246,8 @@ public class TransitionSceneManager
         var unload = SceneManager.UnloadSceneAsync(old);
 
         // Wait until unload is complete
-        while (!unload.isDone) yield return null;
+        while (!unload.isDone)
+            yield return null;
 
         // Invoke callback if there's any
         onFinished?.Invoke();
@@ -246,7 +256,8 @@ public class TransitionSceneManager
     private void SetupOrigin()
     {
         // Ensure the next scene is loaded
-        if (_next == null) return;
+        if (_next == null)
+            return;
 
         foreach (var item in _next.Value.GetRootGameObjects())
         {
