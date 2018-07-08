@@ -18,11 +18,20 @@ public class JoystickController : MonoBehaviour
     public int numberPlayer = 1;
 
     private bool invertGravity = false;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidbodyComponent;
+    public bool CanJump
+    {
+        get; set;
+    }
+
+    private void Start()
+    {
+        this.CanJump = true;
+    }
 
     private void Awake()
     {
-        this.rigidbody = GetComponent<Rigidbody2D>();
+        this.rigidbodyComponent = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -33,10 +42,10 @@ public class JoystickController : MonoBehaviour
 
     private void Jump(bool value)
     {
-        if (value)
+        if (value && this.CanJump)
         {
             float y = this.jumpForce * (this.invertGravity ? -1 : 1);
-            this.rigidbody.AddForce(new Vector2(0f, y));
+            this.rigidbodyComponent.AddForce(new Vector2(0f, y));
         }
     }
 
@@ -47,7 +56,7 @@ public class JoystickController : MonoBehaviour
             horizontalMovement = horizontalMovement * (-1);
         }
 
-        this.rigidbody.velocity = new Vector2(horizontalMovement * this.maxHorizontalSpeed, this.rigidbody.velocity.y);
+        this.rigidbodyComponent.velocity = new Vector2(horizontalMovement * this.maxHorizontalSpeed, this.rigidbodyComponent.velocity.y);
     }
 
     private float GetAxis(string axisName)
