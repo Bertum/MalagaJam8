@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Infernage.unity
-    guid: 66362a9c4fc96c743843916b49ef56dd
+    path: Assets/Scenes/Game.unity
+    guid: 35483f3ca56104a4eb05e2d9ff8f3dc6
   - enabled: 1
-    path: Assets/Scenes/InfernageSub2.unity
-    guid: f5ba73f0e417091408294a1dc7c997fd
+    path: Assets/Scenes/Level0.unity
+    guid: 5eb7042aa9eae824f9a757e0fdd63de2
   - enabled: 1
-    path: Assets/Scenes/InfernageSub1.unity
-    guid: 6f24c57e0fece2746981d055d1a64489
+    path: Assets/Scenes/Level1.unity
+    guid: a0c4dd9fc970a7f4684e3dbec77fb617
   - enabled: 1
-    path: Assets/Scenes/InfernageSub3.unity
-    guid: 81eed7ad54f69a542bd804d23b7d1735
+    path: Assets/Scenes/Level2.unity
+    guid: 97d336f31b1b15a4d97bff6d57885a60
   m_configObjects: {}
