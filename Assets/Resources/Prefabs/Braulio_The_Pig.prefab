@@ -19,9 +19,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4323569864949586}
+  - component: {fileID: 95829617370213668}
   - component: {fileID: 61614863415458714}
   - component: {fileID: 50522209885573280}
-  - component: {fileID: 95829617370213668}
+  - component: {fileID: 247300811824990666}
+  - component: {fileID: 114563213643739120}
+  - component: {fileID: 114111664182250704}
   m_Layer: 0
   m_Name: Braulio_The_Pig
   m_TagString: Untagged
@@ -110,8 +113,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266687532745120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.18, y: 0.7, z: -5.5058823}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6.18, y: 0.7, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4658208241522328}
   m_Father: {fileID: 0}
@@ -158,7 +161,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266687532745120}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -175,7 +178,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.2977715, y: 8.34643}
+  m_Size: {x: 5.3, y: 8.34643}
   m_EdgeRadius: 0
 --- !u!95 &95829617370213668
 Animator:
@@ -195,6 +198,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114111664182250704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1266687532745120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfbb1a4ff37823a4ca20d4766375f0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHorizontalSpeed: 10
+  jumpForce: 300
+  invertHorizontalMovement: 0
+  numberPlayer: 1
+--- !u!114 &114563213643739120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1266687532745120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e42f61966c60894c82e0704f087d3b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleported: 0
+  isRight: 0
+  constForce: {fileID: 0}
 --- !u!212 &212244088832227996
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -330,3 +362,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!247 &247300811824990666
+ConstantForce2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1266687532745120}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
