@@ -113,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266687532745120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.18, y: 0.7, z: 0}
+  m_LocalPosition: {x: 6.18, y: 0.7, z: -5.5058823}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4658208241522328}
@@ -127,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508126823852208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.118561, y: -1.3966465, z: 5.505882}
+  m_LocalPosition: {x: 0.36, y: -2.67, z: 5.505882}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4080364709423876}
@@ -167,7 +167,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.2832413, y: 1.3115511}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -226,7 +226,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleported: 0
   isRight: 0
-  constForce: {fileID: 0}
+  floorCheck: {fileID: 0}
+  weaponPosition: {fileID: 0}
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!212 &212244088832227996
 SpriteRenderer:
   m_ObjectHideFlags: 1
