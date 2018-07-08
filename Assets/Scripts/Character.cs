@@ -7,17 +7,19 @@ public class Character : MonoBehaviour
     public bool teleported;
     private float health;
     public bool isRight;
-    public Transform floorObject;
+    public Transform floorCheck;
+    public Transform weaponPosition;
     public LayerMask floorMask;
 
     private JoystickController joystickController;
     private ConstantForce2D constantForceComponent;
     private float floorRadius = 0.07f;
-    private bool touchingFloor;
+    private bool hasWeapon;
+    private GameObject weaponTriggerObject;
+    private bool canGetWeapon;
 
     private void Awake()
     {
-        teleported = false;
         constantForceComponent = GetComponent<ConstantForce2D>();
         this.joystickController = GetComponent<JoystickController>();
     }
@@ -25,13 +27,25 @@ public class Character : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        this.touchingFloor = true;
+        teleported = false;
+        this.canGetWeapon = false;
+        this.hasWeapon = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (this.joystickController.IsPressButtonY())
+        {
+            if (this.canGetWeapon && !this.hasWeapon)
+            {
+                GetWeapon();
+            }
+            else if (this.hasWeapon)
+            {
+                DropWeapon();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -42,9 +56,8 @@ public class Character : MonoBehaviour
             changeMyGravity();
         }
 
-
-        //Comprobar si el personaje esta tocando el suelo/un bloque.
-        this.joystickController.CanJump = Physics2D.OverlapCircle(this.floorObject.position, this.floorRadius, this.floorMask);
+        //Comprobar si el personaje esta tocando el suelo.
+        this.joystickController.CanJump = Physics2D.OverlapCircle(this.floorCheck.position, this.floorRadius, this.floorMask);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -62,7 +75,13 @@ public class Character : MonoBehaviour
 
     private void GetWeapon()
     {
-        //Call weaponController set owner
+        if (this.hasWeapon)
+        {
+            return;
+        }
+
+        this.weaponTriggerObject.GetComponent<WeaponController>().SetOwner(this);
+        this.hasWeapon = true;
     }
 
     public void changeMyGravity()
@@ -85,12 +104,15 @@ public class Character : MonoBehaviour
 
     }
 
-    public void DropWeapon(bool value)
+    public void DropWeapon()
     {
-        throw new System.NotImplementedException();
+        if (this.hasWeapon)
+        {
+            this.weaponTriggerObject.GetComponent<WeaponController>().SetOwner(null);
+        }
     }
 
-    public void Shoot(bool value)
+    public void Shoot()
     {
         throw new System.NotImplementedException();
     }
@@ -103,9 +125,38 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!this.hasWeapon && !weaponHasOwner(collision) && !weaponEqualTrigger(collision))
+        {
+            this.weaponTriggerObject = collision.gameObject;
+            this.canGetWeapon = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        this.canGetWeapon = false;
+    }
+
     public JoystickController GetJoystickController()
     {
         return this.joystickController;
+    }
+
+    public Transform GetWeaponPosition()
+    {
+        return this.weaponPosition;
+    }
+
+    private bool weaponHasOwner(Collider2D collision)
+    {
+        return collision.gameObject.GetComponent<WeaponController>().hasOwner();
+    }
+
+    private bool weaponEqualTrigger(Collider2D collision)
+    {
+        return collision.gameObject.Equals(this.weaponTriggerObject);
     }
 
 }

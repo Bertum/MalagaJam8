@@ -380,7 +380,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleported: 0
   isRight: 0
-  floorObject: {fileID: 1005659498}
+  floorCheck: {fileID: 0}
+  weaponPosition: {fileID: 0}
   floorMask:
     serializedVersion: 2
     m_Bits: 256
@@ -551,7 +552,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleported: 0
   isRight: 0
-  floorObject: {fileID: 1711747162}
+  floorCheck: {fileID: 0}
+  weaponPosition: {fileID: 0}
   floorMask:
     serializedVersion: 2
     m_Bits: 256
@@ -614,7 +616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1005659498}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameObjectCheckFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1008,7 +1010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1711747162}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameObjectCheckFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

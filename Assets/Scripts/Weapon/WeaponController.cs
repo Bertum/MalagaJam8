@@ -46,18 +46,24 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (Input.GetKey(KeyCode.E) && timer >= cadence)
+        if (this.ownerCharacter != null)
         {
-            if (melee)
+            this.transform.position = this.ownerCharacter.GetWeaponPosition().position;
+            timer += Time.deltaTime;
+
+            if (timer >= cadence && this.ownerCharacter.GetJoystickController().IsPressButtonB())
             {
-                Attack();
+                if (melee)
+                {
+                    Attack();
+                }
+                else
+                {
+                    Shoot();
+                }
+
+                timer = 0;
             }
-            else
-            {
-                Shoot();
-            }
-            timer = 0;
         }
     }
 
@@ -128,5 +134,10 @@ public class WeaponController : MonoBehaviour
     public void SetOwner(Character character)
     {
         ownerCharacter = character;
+    }
+
+    public bool hasOwner()
+    {
+        return this.ownerCharacter != null;
     }
 }
