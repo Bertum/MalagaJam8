@@ -144,8 +144,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266687532745120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.18, y: 0.7, z: -5.5058823}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2149257, y: 0.2149257, z: 0.4298514}
   m_Children:
   - {fileID: 4658208241522328}
   - {fileID: 4487294130883848}
@@ -309,12 +309,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleported: 0
+  health: 0
   isRight: 0
   floorCheck: {fileID: 4353720068719002}
   weaponPosition: {fileID: 4487294130883848}
   floorMask:
     serializedVersion: 2
     m_Bits: 256
+  playerScale: 0.2149257
+  generalGravity: 15
 --- !u!212 &212244088832227996
 SpriteRenderer:
   m_ObjectHideFlags: 1

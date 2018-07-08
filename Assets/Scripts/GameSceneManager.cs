@@ -19,13 +19,7 @@ public class GameSceneManager : MonoBehaviour
 	// Use this for initialization
 	public void Start ()
     {
-        _state = TransitionState.Loading;
-        _sceneManager = new TransitionSceneManager(
-            SceneManager.GetSceneByName(InitialScene),
-            // Playable scenes - lobby - parent scene
-            SceneManager.sceneCountInBuildSettings,
-            // Origin will be the inverse one of target
-            -(TransitionTarget));
+        _state = TransitionState.Initialize;
         _animationManager = new TransitionAnimationManager(TransitionTarget, TransitionTime, Characters);
 
         if (TransitionTime == 0)
@@ -37,6 +31,16 @@ public class GameSceneManager : MonoBehaviour
     {
         switch (_state)
         {
+            case TransitionState.Initialize:
+                SceneManager.LoadScene(InitialScene, LoadSceneMode.Additive);
+                _sceneManager = new TransitionSceneManager(
+                    SceneManager.GetSceneByName(InitialScene),
+                    // Playable scenes - lobby - parent scene
+                    SceneManager.sceneCountInBuildSettings,
+                    // Origin will be the inverse one of target
+                    -(TransitionTarget));
+                _state = TransitionState.Loading;
+                break;
             case TransitionState.Activating:
                 // Level finished, activate next level
                 _state = TransitionState.Idle;
@@ -119,7 +123,7 @@ public class TransitionAnimationManager
             _toMove.Add(character.gameObject, new KeyValuePair<Vector2, Vector2>(character.transform.position,
                 new Vector2(spawn.transform.position.x + _target, spawn.transform.position.y)));
 
-            //character.DropWeapon(true);
+            character.DropWeapon();
             EnableDisableCharacter(false, character);
         }
     }
@@ -255,6 +259,7 @@ public class TransitionSceneManager
 
 public enum TransitionState
 {
+    Initialize,
     Activating,
     Activated,
     Unloading,

@@ -4,13 +4,14 @@ public class BulletController : MonoBehaviour
 {
     private bool move = false;
     public float damage = 0;
-    private float speed = 6;
+    public float speed = 6;
     private int number;
     private float dispersionInt = 0.1f;
     private Vector3 direction;
     private SpriteRenderer spriteRenderer;
     private Sprite inversionSprite;
     private Sprite bazookaSprite;
+    public Character character;
 
     private void Awake()
     {
