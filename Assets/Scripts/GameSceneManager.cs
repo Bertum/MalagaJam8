@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 public class GameSceneManager : MonoBehaviour
 {
     public string InitialScene;
-    public float TransitionSpeed;
+    public float TransitionTime;
     public float TransitionTarget;
+    public Character[] Characters;
 
     private TransitionAnimationManager _animationManager;
     private TransitionSceneManager _sceneManager;
@@ -25,7 +26,10 @@ public class GameSceneManager : MonoBehaviour
             SceneManager.sceneCountInBuildSettings,
             // Origin will be the inverse one of target
             -(TransitionTarget));
-        _animationManager = new TransitionAnimationManager(TransitionTarget, TransitionSpeed);
+        _animationManager = new TransitionAnimationManager(TransitionTarget, TransitionTime, Characters);
+
+        if (TransitionTime == 0)
+            TransitionTime = 1;
 	}
 	
 	// Update is called once per frame
@@ -74,52 +78,94 @@ public class GameSceneManager : MonoBehaviour
 
 public class TransitionAnimationManager
 {
-    private Dictionary<GameObject, float> _toMove;
+    private Dictionary<GameObject, KeyValuePair<Vector2, Vector2>> _toMove;
     private HashSet<GameObject> _toRemove;
-    private readonly float _target;
-    private readonly float _speed;
+    private float lerpPercentage = 0f;
 
-    public TransitionAnimationManager(float target, float speed)
+    private readonly float _target;
+    private readonly float _time;
+    private readonly Character[] _characters;
+
+    public TransitionAnimationManager(float target, float time, Character[] characters)
     {
         _target = target;
-        _speed = speed;
+        _time = time;
+        _characters = characters;
 
-        _toMove = new Dictionary<GameObject, float>();
+        _toMove = new Dictionary<GameObject, KeyValuePair<Vector2, Vector2>>();
         _toRemove = new HashSet<GameObject>();
     }
 
-    public void AddTransition(params Scene[] scenes)
+    public void AddTransition(Scene current, Scene next)
     {
+        lerpPercentage = 0f;
+
         // Add all root game objects to perform the transition
-        foreach (var item in scenes.Where(s => s.IsValid()).SelectMany(s => s.GetRootGameObjects()))
-            _toMove.Add(item, item.transform.position.x + _target);
+        var rgos = current.GetRootGameObjects().Concat(next.GetRootGameObjects());
+        foreach (var item in rgos)
+        {
+            var position = item.transform.position;
+            _toMove.Add(item, new KeyValuePair<Vector2, Vector2>(position, new Vector2(position.x + _target, position.y)));
+        }
+
+        // Add characters interpolations
+        var spawns = GameObject.FindGameObjectsWithTag("Respawn").Where(o => o.scene.name == next.name).ToList();
+        foreach (var character in _characters)
+        {
+            var i = UnityEngine.Random.Range(0, spawns.Count);
+            var spawn = spawns[i];
+            spawns.RemoveAt(i);
+
+            _toMove.Add(character.gameObject, new KeyValuePair<Vector2, Vector2>(character.transform.position,
+                new Vector2(spawn.transform.position.x + _target, spawn.transform.position.y)));
+
+            //character.DropWeapon(true);
+            EnableDisableCharacter(false, character);
+        }
     }
 
     // Called in every update
     public bool Update()
     {
+        lerpPercentage += Time.deltaTime / _time;
         foreach (var kvp in _toMove)
         {
             var item = kvp.Key;
-            var target = kvp.Value;
+            var source = kvp.Value.Key;
+            var target = kvp.Value.Value;
 
             // Interpolate
-            var @new = Mathf.Lerp(item.transform.position.x, target, _speed * Time.deltaTime);
-            if (Mathf.Abs(@new - target) < 0.1f)
+            var @new = Vector2.Lerp(source, target, lerpPercentage);
+            if (Vector2.SqrMagnitude(@new - target) < 0.001f)
                 _toRemove.Add(item);
 
             // Update position
-            var position = item.transform.position;
-            position.x = @new;
-            item.transform.position = position;
+            item.transform.position = @new;
         }
 
         // Clear down
         foreach (var item in _toRemove)
             _toMove.Remove(item);
+
         _toRemove.Clear();
 
-        return _toMove.Count == 0;
+        var res = _toMove.Count == 0;
+        if (res)
+        {
+            foreach (var character in _characters)
+                EnableDisableCharacter(true, character);
+        }
+
+        return res;
+    }
+
+    private void EnableDisableCharacter(bool enable, Character character)
+    {
+        character.GetComponent<Rigidbody2D>().isKinematic = !enable;
+        character.GetComponent<Rigidbody2D>().gravityScale = enable ? 1 : 0;
+        character.GetComponent<Collider2D>().enabled = enable;
+        character.GetComponent<JoystickController>().enabled = enable;
+        character.enabled = enable;
     }
 }
 

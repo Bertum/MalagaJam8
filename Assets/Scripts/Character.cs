@@ -7,20 +7,25 @@ public class Character : MonoBehaviour
     public bool teleported;
     private float health;
     public bool isRight;
+    public Transform floorObject;
+    public LayerMask floorMask;
+
     private JoystickController joystickController;
-    public ConstantForce2D constForce;
+    private ConstantForce2D constantForceComponent;
+    private float floorRadius = 0.07f;
+    private bool touchingFloor;
 
     private void Awake()
     {
         teleported = false;
-        constForce = GetComponent<ConstantForce2D>();
+        constantForceComponent = GetComponent<ConstantForce2D>();
         this.joystickController = GetComponent<JoystickController>();
     }
 
     // Use this for initialization
     void Start()
     {
-
+        this.touchingFloor = true;
     }
 
     // Update is called once per frame
@@ -36,6 +41,10 @@ public class Character : MonoBehaviour
             this.joystickController.SetInvertGravity(!this.joystickController.GetInvertGravity());
             changeMyGravity();
         }
+
+
+        //Comprobar si el personaje esta tocando el suelo/un bloque.
+        this.joystickController.CanJump = Physics2D.OverlapCircle(this.floorObject.position, this.floorRadius, this.floorMask);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -58,19 +67,19 @@ public class Character : MonoBehaviour
 
     public void changeMyGravity()
     {
-        if (constForce.force.y != 0)
+        if (constantForceComponent.force.y != 0)
         {
-            constForce.force = new Vector2(0, 0);
+            constantForceComponent.force = new Vector2(0, 0);
         }
         else
         {
             if (Physics2D.gravity.y > 0)
             {
-                constForce.force = new Vector2(0, -18.0f);
+                constantForceComponent.force = new Vector2(0, -18.0f);
             }
             else if (Physics2D.gravity.y < 0)
             {
-                constForce.force = new Vector2(0, 18.0f);
+                constantForceComponent.force = new Vector2(0, 18.0f);
             }
         }
 
