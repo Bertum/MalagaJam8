@@ -75,19 +75,6 @@ public class Character : MonoBehaviour
         this.joystickController.CanJump = Physics2D.OverlapCircle(this.floorCheck.position, this.floorRadius, this.floorMask);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var weaponController = collision.gameObject.GetComponent<WeaponController>();
-        if (collision.gameObject.tag == "Bullet")
-        {
-            health -= collision.gameObject.GetComponent<BulletController>().damage;
-        }
-        else if (collision.gameObject.tag == "MeleeWeapon" && weaponController.attacking)
-        {
-            health -= weaponController.damage;
-        }
-    }
-
     private void GetWeapon()
     {
         if (this.hasWeapon || !checkWeaponTriggerObject())
@@ -136,6 +123,20 @@ public class Character : MonoBehaviour
         if (collision.gameObject.tag.Equals(TAG_ITEM_INVERT_GLOBAL_GRAVITY))
         {
             GameController.Instance.InvertGlobalGravity();
+        }
+
+        var weaponController = collision.gameObject.GetComponent<WeaponController>();
+
+        if (weaponController != null)
+        {
+            if (collision.gameObject.tag == "Bullet")
+            {
+                health -= collision.gameObject.GetComponent<BulletController>().damage;
+            }
+            else if (collision.gameObject.tag == "MeleeWeapon" && weaponController.attacking)
+            {
+                health -= weaponController.damage;
+            }
         }
     }
 

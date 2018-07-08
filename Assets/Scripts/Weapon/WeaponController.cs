@@ -121,14 +121,14 @@ public class WeaponController : MonoBehaviour
     private void PlayAnimation()
     {
         var animator = GetComponentInChildren<Animator>();
-        if (melee)
-        {
-            animator.Play("WeaponAnimation");
-        }
-        else
-        {
-            animator.Play("SmokeAnimation");
-        }
+        //if (melee)
+        //{
+        //    animator.Play("WeaponAnimation");
+        //}
+        //else
+        //{
+        //    animator.Play("SmokeAnimation");
+        //}
     }
 
     public void SetOwner(Character character)
