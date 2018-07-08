@@ -6,7 +6,7 @@ public class DeathCollider : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Destroy(collision.gameObject);
+            collision.GetComponent<Character>().health = 0;
         }
     }
 }

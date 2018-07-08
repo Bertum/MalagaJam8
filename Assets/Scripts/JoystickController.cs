@@ -9,8 +9,8 @@ public class JoystickController : MonoBehaviour
     private static readonly string JOYSTICK_B = "BB";//Joystick B button
     private static readonly string JOYSTICK_X = "XB";//Joystick X button
     private static readonly string JOYSTICK_Y = "YB";//Joystick Y button
-    private static readonly string JOYSTICK_RIGHT_ONE_PLATER_ONE = "JR1";//Joystick derecho - horizontal
-    private static readonly string JOYSTICK_RIGHT_TWO_PLATER_ONE = "JR2";//Joystick derecho - vertical
+    //private static readonly string JOYSTICK_RIGHT_ONE_PLATER_ONE = "JR1";//Joystick derecho - horizontal
+    //private static readonly string JOYSTICK_RIGHT_TWO_PLATER_ONE = "JR2";//Joystick derecho - vertical
 
     public float maxHorizontalSpeed = 10f;
     public float jumpForce = 300f;
