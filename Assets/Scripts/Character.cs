@@ -69,6 +69,8 @@ public class Character : MonoBehaviour
             changeMyGravity();
         }
 
+        this.isRight = !this.joystickController.IsJoystickLeftHorizontalLeft();
+
         //Comprobar si el personaje esta tocando el suelo.
         this.joystickController.CanJump = Physics2D.OverlapCircle(this.floorCheck.position, this.floorRadius, this.floorMask);
     }
