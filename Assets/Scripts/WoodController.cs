@@ -2,6 +2,7 @@
 
 public class WoodController : MonoBehaviour
 {
+    public bool canMove = true;
     private int randomSpeed;
 
     private void Awake()
@@ -16,6 +17,9 @@ public class WoodController : MonoBehaviour
 
     void Update()
     {
-        this.transform.Translate(Vector3.left * randomSpeed * Time.deltaTime);
+        if (canMove)
+        {
+            this.transform.Translate(Vector3.left * randomSpeed * Time.deltaTime);
+        }
     }
 }

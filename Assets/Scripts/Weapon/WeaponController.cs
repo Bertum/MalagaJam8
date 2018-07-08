@@ -24,7 +24,7 @@ public class WeaponController : MonoBehaviour
     {
         bullets = new List<GameObject>();
         var bullet = Resources.Load<GameObject>("Prefabs/Bullet/Bullet");
-        noBulletsAudio = Resources.Load<AudioClip>("Audio/NoBulletAudio");
+        noBulletsAudio = Resources.Load<AudioClip>("Audio/NoBullet");
 
         audioSource = GetComponent<AudioSource>();
 
