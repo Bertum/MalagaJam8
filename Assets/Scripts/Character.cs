@@ -140,8 +140,6 @@ public class Character : MonoBehaviour
             }
 
         }
-
-        Debug.Log(health);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
