@@ -18,9 +18,9 @@ public class MenuController : MonoBehaviour
             Instance = this;
         }
         scorePlayer1 = GameObject.Find("Canvas/Panel/Scores/txtPlayer1").GetComponent<Text>();
-        scorePlayer1 = GameObject.Find("Canvas/Panel/Scores/txtPlayer2").GetComponent<Text>();
-        scorePlayer1 = GameObject.Find("Canvas/Panel/Scores/txtPlayer3").GetComponent<Text>();
-        scorePlayer1 = GameObject.Find("Canvas/Panel/Scores/txtPlayer4").GetComponent<Text>();
+        scorePlayer2 = GameObject.Find("Canvas/Panel/Scores/txtPlayer2").GetComponent<Text>();
+        scorePlayer3 = GameObject.Find("Canvas/Panel/Scores/txtPlayer3").GetComponent<Text>();
+        scorePlayer4 = GameObject.Find("Canvas/Panel/Scores/txtPlayer4").GetComponent<Text>();
         panel = GameObject.Find("Canvas/Panel");
         panel.SetActive(false);
     }
