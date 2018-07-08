@@ -9,7 +9,7 @@ public class WoodGenerator : MonoBehaviour
     private void Awake()
     {
         woodPrefab = Resources.Load<GameObject>("Prefabs/Wood");
-        randomTimeToGenerate = Random.Range(0, 5);
+        randomTimeToGenerate = Random.Range(2, 5);
     }
 
     // Update is called once per frame
