@@ -12,8 +12,8 @@ public class WeaponController : MonoBehaviour
     public bool isBazooka;
     [HideInInspector]
     public bool attacking;
-    private Character ownerCharacter;
 
+    private Character ownerCharacter;
     private float timer;
     private List<GameObject> bullets;
     private AudioClip noBulletsAudio;
