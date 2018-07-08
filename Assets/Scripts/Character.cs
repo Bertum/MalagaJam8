@@ -5,7 +5,7 @@ public class Character : MonoBehaviour
     private static readonly string TAG_ITEM_INVERT_GLOBAL_GRAVITY = "ItemInvertGlobalGravity";
 
     public bool teleported;
-    private float health;
+    public float health;
     public bool isRight;
     public Transform floorCheck;
     public Transform weaponPosition;
