@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266687532745120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.18, y: 0.7, z: -5.5058823}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4658208241522328}
@@ -160,7 +160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365643288749268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.34, y: -2.65, z: 0}
+  m_LocalPosition: {x: -0.17, y: -3.83, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 4323569864949586}
@@ -173,7 +173,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917323988522154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.36, y: 0.25, z: 0}
+  m_LocalPosition: {x: 1.65, y: -0.91, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 4323569864949586}
@@ -309,12 +309,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleported: 0
+  health: 0
   isRight: 0
   floorCheck: {fileID: 4353720068719002}
   weaponPosition: {fileID: 4487294130883848}
   floorMask:
     serializedVersion: 2
     m_Bits: 256
+  playerScale: 0.5
+  generalGravity: 15
 --- !u!212 &212244088832227996
 SpriteRenderer:
   m_ObjectHideFlags: 1
