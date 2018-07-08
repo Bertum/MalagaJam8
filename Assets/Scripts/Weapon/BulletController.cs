@@ -17,7 +17,7 @@ public class BulletController : MonoBehaviour
         move = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         inversionSprite = Resources.Load<Sprite>("Sprites/Bullets/inversionBullet");
-        bazookaSprite = Resources.Load<Sprite>("Sprites/Bullets/misile"); ;
+        bazookaSprite = Resources.Load<Sprite>("Sprites/Bullets/misile");
     }
 
     public void ActivateAndMove(Vector3 weaponPosition, int number, bool right, WeaponType weaponType)
