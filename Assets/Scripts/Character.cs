@@ -54,11 +54,11 @@ public class Character : MonoBehaviour
     private void FixedUpdate()
     {
         moveValue = joystickController.GetValueJoystickLeft();
-        if (moveValue >= 0)
+        if (moveValue > 0)
         {
             transform.localScale = new Vector3(playerScale, transform.localScale.y);
         }
-        else if (moveValue <= 0)
+        else if (moveValue < 0)
         {
             transform.localScale = new Vector3(playerScale * -1, transform.localScale.y);
         }
