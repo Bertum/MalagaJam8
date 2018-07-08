@@ -19,6 +19,7 @@ public class GameSceneManager : MonoBehaviour
 	// Use this for initialization
 	public void Start ()
     {
+        SceneManager.LoadScene(InitialScene, LoadSceneMode.Additive);
         _state = TransitionState.Loading;
         _sceneManager = new TransitionSceneManager(
             SceneManager.GetSceneByName(InitialScene),
